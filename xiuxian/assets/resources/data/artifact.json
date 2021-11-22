@@ -1,0 +1,13 @@
+[
+{"id":100001,"type":1,"name":"青铜刀","lv":1,"tipo":5,"zhenyuan":"","wuxing":"","lingli":"","xianli":10,"yaoli":"","moli":""},
+{"id":100002,"type":1,"name":"破魔剑","lv":2,"tipo":"","zhenyuan":5,"wuxing":"","lingli":5,"xianli":"","yaoli":"","moli":""},
+{"id":100003,"type":1,"name":"残旧的护身符","lv":3,"tipo":"","zhenyuan":"","wuxing":2,"lingli":"","xianli":30,"yaoli":"","moli":""},
+{"id":100004,"type":1,"name":"射日弓","lv":4,"tipo":"","zhenyuan":"","wuxing":"","lingli":100,"xianli":101,"yaoli":102,"moli":103},
+{"id":100005,"type":1,"name":"盘古斧","lv":5,"tipo":"","zhenyuan":"","wuxing":"-5","lingli":200,"xianli":201,"yaoli":202,"moli":203},
+{"id":100006,"type":1,"name":"毒雨刃","lv":1,"tipo":"-5","zhenyuan":"-10","wuxing":"","lingli":"-5","xianli":"-5","yaoli":"-5","moli":"5"},
+{"id":200001,"type":2,"name":"春元功","lv":1,"tipo":2,"zhenyuan":2,"wuxing":"","lingli":"","xianli":"","yaoli":"","moli":""},
+{"id":200002,"type":2,"name":"冰霜拳","lv":2,"tipo":"","zhenyuan":"","wuxing":"","lingli":2,"xianli":2,"yaoli":2,"moli":2},
+{"id":200003,"type":2,"name":"亢龙悟","lv":3,"tipo":"","zhenyuan":"","wuxing":2,"lingli":"","xianli":"","yaoli":"","moli":""},
+{"id":200004,"type":2,"name":"八九玄功","lv":4,"tipo":100,"zhenyuan":100,"wuxing":"","lingli":"","xianli":"","yaoli":"","moli":""},
+{"id":200005,"type":2,"name":"开天辟地神功","lv":5,"tipo":200,"zhenyuan":200,"wuxing":"","lingli":"","xianli":"","yaoli":"","moli":""}
+]

@@ -1,0 +1,11 @@
+[
+{"id":"1","name":"圣皇大陆","img":"mainland_01.png","shili":"101,332","map":"74,232","adventure":"145,288","treasure":"1222,4580","skill":"1222,4580"},
+{"id":"2","name":"天南大陆","img":"mainland_02.png","shili":"1,10","map":"1,10","adventure":"1,10","treasure":"1,10","skill":"1,10"},
+{"id":"3","name":"玄明仙境","img":"mainland_03.png","shili":"11,20","map":"11,20","adventure":"11,20","treasure":"11,20","skill":"11,20"},
+{"id":"4","name":"苍茫妖地","img":"mainland_04.png","shili":"21,30","map":"21,30","adventure":"21,30","treasure":"21,30","skill":"21,30"},
+{"id":"5","name":"战天大陆","img":"mainland_05.png","shili":"101,332","map":"74,232","adventure":"145,288","treasure":"1222,4580","skill":"1222,4580"},
+{"id":"6","name":"枫叶大陆","img":"mainland_06.png","shili":"1,10","map":"1,10","adventure":"1,10","treasure":"1,10","skill":"1,10"},
+{"id":"7","name":"傲海仙境","img":"mainland_07.png","shili":"101,332","map":"74,232","adventure":"145,288","treasure":"1222,4580","skill":"1222,4580"},
+{"id":"8","name":"九极妖地","img":"mainland_08.png","shili":"1,10","map":"1,10","adventure":"1,10","treasure":"1,10","skill":"1,10"},
+{"id":"9","name":"冰魄大陆","img":"mainland_09.png","shili":"11,20","map":"11,20","adventure":"11,20","treasure":"11,20","skill":"11,20"}
+]

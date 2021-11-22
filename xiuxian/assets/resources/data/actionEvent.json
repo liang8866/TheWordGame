@@ -1,0 +1,7 @@
+[
+{"id":"501","actionEventDesc":"你在洞府里发现一个奇怪箱子，开启需要一些时间，你的选择是_____？","anniu1":"放弃","anniu2":"开启","tip":"正在开启中…","time":"3","contact":"10127","randReward1":"100006|100","randReward2":"","randReward3":""},
+{"id":"502","actionEventDesc":"你在洞府里发现一本残缺秘术，破解需要一些时间，你的选择是_____？","anniu1":"放弃","anniu2":"破解","tip":"正在破解中…","time":"5","contact":"10130","randReward1":"200002|100","randReward2":"","randReward3":""},
+{"id":"503","actionEventDesc":"洞府外的大门，打开需要一些时间，你的选择是_____？","anniu1":"放弃","anniu2":"打开","tip":"正在打开中…","time":"4","contact":"","randReward1":"100001|100","randReward2":"100002|50","randReward3":"100003|50"},
+{"id":"504","actionEventDesc":"邪道坏人正在杀戮村庄平民，你的选择是_____？","anniu1":"躲避","anniu2":"击杀","tip":"正在战斗中…","time":"5","contact":"10097","randReward1":"100001|100","randReward2":"100002|50","randReward3":"100003|50"},
+{"id":"505","actionEventDesc":"没想到老人居然是为了夺舍你的肉体，你的选择是_____？","anniu1":"跪地求饶","anniu2":"抢先下手","tip":"正在对抗中…","time":"6","contact":"10108","randReward1":"100002|100","randReward2":"100003|50","randReward3":"100004|50"}
+]

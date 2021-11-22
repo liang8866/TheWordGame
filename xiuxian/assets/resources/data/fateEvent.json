@@ -1,0 +1,10 @@
+[
+{"id":701,"fateEventDesc":"神秘玉佩释放出神秘灵能滋润你的身体，让你活了过来","randCondition":10010,"noTrigger":701},
+{"id":702,"fateEventDesc":"由于不知名原因，你的灵魂居然没有被湮灭，并出现在一个阴森的地方！","randCondition":"nialing:10&1007","noTrigger":702},
+{"id":703,"fateEventDesc":"或许是奇怪丹药的问题，你的身体重新恢复了生机","randCondition":10081,"noTrigger":703},
+{"id":704,"fateEventDesc":"这花居然是传说中的彼岸花，让你重新复活了","randCondition":10082,"noTrigger":704},
+{"id":705,"fateEventDesc":"随着一声不可闻的叹息，已死亡的你，身体重新恢复了生机","randCondition":"","noTrigger":705},
+{"id":706,"fateEventDesc":"一个神秘人给你使用了重生丹，让你起死回生","randCondition":"","noTrigger":706},
+{"id":707,"fateEventDesc":"也许你命不该绝，体内出现一道神秘灵能，让你活了过来","randCondition":"","noTrigger":707},
+{"id":708,"fateEventDesc":"策划大大面露姨母般的微笑，手起笔落，你复活了","randCondition":"","noTrigger":708}
+]
