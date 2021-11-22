@@ -460,16 +460,21 @@ let Tools = new class {
         }else{
             fag1 = false;
         }
-
+      
         for (let index = 0; index < idArray.length; index++) {
             const element = idArray[index];
             if (selectMap.get(element) != null) {
                 fag1 = true;
             }
         }
-
+        cc.log(idStr,xwStr,fag1);
         let tmpArr = xwStr.split(':');//分割
-        let arr = tmpArr[1].split(",");
+   
+        let arr = [];//tmpArr[1].split(",");
+        if(tmpArr.length>1)
+        {
+            arr = tmpArr[1].split(",");
+        }
         let num1:number = null;
         let num2:number = null;
         if(arr.length>0)

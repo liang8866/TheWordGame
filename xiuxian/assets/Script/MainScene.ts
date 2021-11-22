@@ -38,7 +38,7 @@ export default class NewClass extends cc.Component {
         this.TalentLayout.active = false;
         this.createAttrLayoutNode.active = false;
         this.mainlandLayoutNode.active = false;
-        this.myliefLayoutNode.active = true;
+        this.myliefLayoutNode.active = false;
 
         cc.game.setFrameRate(60);
     }

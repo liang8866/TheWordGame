@@ -314,5 +314,39 @@ let ConfigMgr = new class {
 
     }
 
+    getFateEvent()
+    {
+
+        let fateEventArray = [];
+        this.fateEventMap.forEach(function(fateItemData,key){
+            if (UserInfo.selectFateMap.get(fateItemData.id) == null) {
+                fateEventArray.push(fateItemData);
+            }
+        })
+        
+        let fag = true;
+        let fateEventItem = null;
+        while(fag )
+        {
+            let rand = ConfigMgr.getRandomNum(0,fateEventArray.length-1);
+            fateEventItem = fateEventArray[rand]; 
+            let randCondition = fateEventItem.randCondition;
+            if(randCondition.length<=0)
+            {
+                fag = true;
+                break;
+            }
+           let isOk =  Tools.getTheContion2(randCondition,UserInfo.selectDocMap);
+           if(isOk)
+           {
+                fag = true;
+                break;
+           }
+
+        }
+
+        return fateEventItem;
+    }
+
 };
 window["ConfigMgr"] = ConfigMgr

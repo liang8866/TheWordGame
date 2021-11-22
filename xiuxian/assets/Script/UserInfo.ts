@@ -9,6 +9,7 @@ let UserInfo = new class {
     age:number = -1;//表示还没出生
     dieNum:number = 0;//死亡次数
     dieTotalNum:number = 2;//最多能死2次，也就算复活2次
+    rootNode:cc.Node = null;
     startLayoutNode:cc.Node = null;
     TalentLayoutNode:cc.Node = null;
     createAttrLayoutNode:cc.Node = null;

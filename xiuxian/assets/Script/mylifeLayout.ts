@@ -147,14 +147,10 @@ export default class mylifeLayout extends cc.Component {
 
     onClickChangeLife()//逆天改命
     {
-        let fateEventArray = ConfigMgr.getTheFitWithFateEvent();//查找所有符合当前复活的逆天改命事件
-        cc.log(fateEventArray)
-        let rand = ConfigMgr.getRandomNum(0,fateEventArray.length-1);
-        let fateEventItem = fateEventArray[rand];
-        cc.log(rand,fateEventItem)
-        UserInfo.selectFateMap.set(fateEventItem.id,fateEventItem);
-        this.setShowItem3(fateEventItem)//你复活了
-      
+         let fateEventItem = ConfigMgr.getFateEvent();//查找所有符合当前复活的逆天改命事件
+         UserInfo.selectFateMap.set(fateEventItem.id,fateEventItem);
+         this.setShowItem3(fateEventItem)//你复活了
+        this.changeLifeNode.active = false;
     }
     /** 当前索引列表项 */
     private _tableCellAtIndex(tableview: TableView, index: number): TableViewCell {
@@ -198,7 +194,7 @@ export default class mylifeLayout extends cc.Component {
     getFromAgeDataForDoc()
     {
         UserInfo.age +=1;//年龄+1
-    
+        // UserInfo.age = 8
         let ageItemData = ConfigMgr.ageArray[UserInfo.age];
         let evenIDsStr = ageItemData.eventid + "";//转成字符串
         let eventIdsArray = evenIDsStr.split(',');
@@ -209,7 +205,7 @@ export default class mylifeLayout extends cc.Component {
         {   
             let rand = ConfigMgr.getRandomNum(0,eventIdsArray.length-1);
             let docItem =  ConfigMgr.docMap.get(eventIdsArray[rand]);
-            //cc.log(rand,docItem);
+            cc.log(rand,docItem);
             let fag0 =  Tools.getIsHaveDoc(docItem);
             let fag1 =  Tools.getRandDocIsInSelectTalentMutexMap(docItem);//是否在我选择的天赋池里面有互斥事件
             if(fag1 == false&&fag0 == false)
@@ -229,8 +225,8 @@ export default class mylifeLayout extends cc.Component {
         }
 
         //测试显示
-        docItemData = ConfigMgr.docMap.get("10094");
-        //cc.log("--->测试显示>>>>>>> age= ",UserInfo.age,docItemData)
+        //docItemData = ConfigMgr.docMap.get("10094");
+        cc.log("--->测试显示>>>>>>> age= ",UserInfo.age,docItemData)
         if(parseInt(docItemData.type) == 1)
         {
             this.setTypeShow1(docItemData);//type=1进行的逻辑
