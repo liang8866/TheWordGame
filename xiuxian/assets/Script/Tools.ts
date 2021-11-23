@@ -286,22 +286,23 @@ let Tools = new class {
     //如果是空字符串，就是随时可用
     getRandDocIsXwEventProbability(docItem)//
     {
-        let fag = false;//不存在
-        let XwEventProbabilityStr = docItem.xwEventProbability+"";//转成字符串，
-        if(XwEventProbabilityStr == "")
-        {
-            return true;//表示没限制，可以用
-        }
-        let tmpArr = XwEventProbabilityStr.split(',');//分割
-        for (let index = 0; index < tmpArr.length; index++) {
-            const element = tmpArr[index];
-            if(UserInfo.selectDocMap.get(element) != null)
-            {
+        
+         let XwEventProbabilityStr = docItem.xwEventProbability+"";//转成字符串，
+        let fag =  this.getTheContion2(XwEventProbabilityStr,UserInfo.selectDocMap);
+        // if(XwEventProbabilityStr == "")
+        // {
+        //     return true;//表示没限制，可以用
+        // }
+        // let tmpArr = XwEventProbabilityStr.split(',');//分割
+        // for (let index = 0; index < tmpArr.length; index++) {
+        //     const element = tmpArr[index];
+        //     if(UserInfo.selectDocMap.get(element) != null)
+        //     {
                 
-                fag = true;//存在，可用
-                break;
-            }
-        }
+        //         fag = true;//存在，可用
+        //         break;
+        //     }
+        // }
         return fag;
     }
 
@@ -325,106 +326,112 @@ let Tools = new class {
     {
         let  xwHappenStr:string = docItem.xwHappen;
         
-        return this.getTheContion1(xwHappenStr,UserInfo.selectDocMap);
+        return this.getTheContion2(xwHappenStr,UserInfo.selectDocMap);
 
     }
 
 
-    getTheContion1(constr,selectMap)
-    {
-        let  orgStr:string = constr;
-        if(orgStr.length<=0)
-        {
-            return true;
-        }
-        let xwStr = "";
-        let idStr = "";
-        if(orgStr.indexOf("&") != -1)
-        {
-            let orgArr = orgStr.split("&");
-            if (orgArr.length >0) {
-                idStr = orgArr[0];
-            }
-            if (orgArr.length >1) {
-                xwStr = orgArr[0];
-            }
-        }else{//单一的
-            if(orgStr.indexOf(":") != -1)//说明是有修为啊，年龄这种
-            {
-                xwStr = orgStr;
-            }else{ 
-                idStr = orgStr;
-            }
-        }
-        let idArray  = idStr.split(",");
-        let fag1 = false;
-        for (let index = 0; index < idArray.length; index++) {
-            const element = idArray[index];
-            if (selectMap.get(element) != null) {
-                return false;
-            }
-        }
+    // getTheContion1(constr,selectMap)
+    // {
+    //     let  orgStr:string = constr;
+    //     if(orgStr.length<=0)
+    //     {
+    //         return true;
+    //     }
+    //     let xwStr = "";
+    //     let idStr = "";
+    //     if(orgStr.indexOf("&") != -1)
+    //     {
+    //         let orgArr = orgStr.split("&");
+    //         if (orgArr.length >0) {
+    //             idStr = orgArr[0];
+    //         }
+    //         if (orgArr.length >1) {
+    //             xwStr = orgArr[0];
+    //         }
+    //     }else{//单一的
+    //         if(orgStr.indexOf(":") != -1)//说明是有修为啊，年龄这种
+    //         {
+    //             xwStr = orgStr;
+    //         }else{ 
+    //             idStr = orgStr;
+    //         }
+    //     }
+    //     let idArray  = idStr.split(",");
+      
+    //     for (let index = 0; index < idArray.length; index++) {
+    //         const element = idArray[index];
+    //         if (selectMap.get(element) != null) {
+    //             return false;
+    //         }
+    //     }
 
-        let tmpArr = xwStr.split(':');//分割
-        let arr = tmpArr[1].split(",");
-        let num1:number = null;
-        let num2:number = null;
-        if(arr.length>0)
-        {
-            num1 = parseInt(arr[0]);
-        }
-        if(arr.length>1)
-        {
-            num2 = parseInt(arr[1]);
-        }
-        let keyNum = 0;
-        if(xwStr.indexOf("wuxing") != -1)
-        {
-            keyNum = UserInfo.attrNumList[0];
-        }
-        else if(xwStr.indexOf("tipo") != -1 )
-        {
-            keyNum = UserInfo.attrNumList[1];
-        }
-        else if(xwStr.indexOf("zhenyuan") != -1 )
-        {
-            keyNum = UserInfo.attrNumList[2];
-        }
-        else if(xwStr.indexOf("lingli") != -1 )
-        {
-            keyNum = UserInfo.attrNumList[3];
-        }
-        else if(xwStr.indexOf("xianli") != -1 )
-        {
-            keyNum = UserInfo.attrNumList[4];
-        }
-        else if(xwStr.indexOf("yaoli") != -1 )
-        {
-            keyNum = UserInfo.attrNumList[5];
-        }
-        else if(xwStr.indexOf("moli") != -1 )
-        {
-            keyNum = UserInfo.attrNumList[6];
-        }
-        else if(xwStr.indexOf("nianling") != -1 )
-        {
-            keyNum = UserInfo.age;
-        }
-        else if(xwStr.indexOf("xiuwei") != -1 )
-        {
-            keyNum = UserInfo.getXiuWei();
-        }
-        if(num1 != null && num2 != null)
-        {
-            return keyNum>=num1&&keyNum<=num2 ?true:false;
-        } 
-        else if(num1 != null && num2 == null)
-        {
-            return keyNum>=num1 ?true:false;
-        }
+    //     let tmpArr = xwStr.split(':');//分割
+   
+    //     let arr = [];//tmpArr[1].split(",");
+    //     if(tmpArr.length>1)
+    //     {
+    //         arr = tmpArr[1].split(",");
+    //     }
+    //     let num1:number = null;
+    //     let num2:number = null;
+        
+    //     if(arr.length>0)
+    //     {
+    //         num1 = parseInt(arr[0]);
+    //     }
+    //     if(arr.length>1)
+    //     {
+    //         num2 = parseInt(arr[1]);
+    //     }
+    //     let keyNum = 0;
+    //     if(xwStr.indexOf("wuxing") != -1)
+    //     {
+    //         keyNum = UserInfo.attrNumList[0];
+    //     }
+    //     else if(xwStr.indexOf("tipo") != -1 )
+    //     {
+    //         keyNum = UserInfo.attrNumList[1];
+    //     }
+    //     else if(xwStr.indexOf("zhenyuan") != -1 )
+    //     {
+    //         keyNum = UserInfo.attrNumList[2];
+    //     }
+    //     else if(xwStr.indexOf("lingli") != -1 )
+    //     {
+    //         keyNum = UserInfo.attrNumList[3];
+    //     }
+    //     else if(xwStr.indexOf("xianli") != -1 )
+    //     {
+    //         keyNum = UserInfo.attrNumList[4];
+    //     }
+    //     else if(xwStr.indexOf("yaoli") != -1 )
+    //     {
+    //         keyNum = UserInfo.attrNumList[5];
+    //     }
+    //     else if(xwStr.indexOf("moli") != -1 )
+    //     {
+    //         keyNum = UserInfo.attrNumList[6];
+    //     }
+    //     else if(xwStr.indexOf("nianling") != -1 )
+    //     {
+    //         keyNum = UserInfo.age;
+    //     }
+    //     else if(xwStr.indexOf("xiuwei") != -1 )
+    //     {
+    //         keyNum = UserInfo.getXiuWei();
+    //     }
+    //     if(num1 != null && num2 != null)
+    //     {
+    //         return keyNum>=num1&&keyNum<=num2 ?true:false;
+    //     } 
+    //     else if(num1 != null && num2 == null)
+    //     {
+    //         return keyNum>=num1 ?true:false;
+    //     }
 
-        return true;
-    }
+    //     return true;
+    // }
 
     getTheContion2(constr,selectMap)
     {
@@ -468,12 +475,20 @@ let Tools = new class {
             }
         }
         cc.log(idStr,xwStr,fag1);
+
+        let fag2 = false;
+        if(xwStr.length<1 ||xwStr == "")
+        {
+            fag2 = true;
+        }
         let tmpArr = xwStr.split(':');//分割
    
         let arr = [];//tmpArr[1].split(",");
         if(tmpArr.length>1)
         {
             arr = tmpArr[1].split(",");
+        }else{
+            fag2 = true;
         }
         let num1:number = null;
         let num2:number = null;
@@ -522,14 +537,14 @@ let Tools = new class {
         {
             keyNum = UserInfo.getXiuWei();
         }
-        let fag2 = false;
+        
         if(num1 != null && num2 != null)
         {
-            fag2 =  keyNum>=num1&&keyNum<=num2 ?true:false;
+            fag2 =  keyNum>num1&&keyNum<=num2 ?true:false;
         } 
         else if(num1 != null && num2 == null)
         {
-            fag2 = keyNum>=num1 ?true:false;
+            fag2 = keyNum>num1 ?true:false;
         }
 
         return fag1&&fag2;
