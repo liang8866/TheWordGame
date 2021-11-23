@@ -151,6 +151,7 @@ export default class mylifeLayout extends cc.Component {
          UserInfo.selectFateMap.set(fateEventItem.id,fateEventItem);
          this.setShowItem3(fateEventItem)//你复活了
         this.changeLifeNode.active = false;
+        this.growupLifeNode.active = true;
     }
     /** 当前索引列表项 */
     private _tableCellAtIndex(tableview: TableView, index: number): TableViewCell {
@@ -198,34 +199,64 @@ export default class mylifeLayout extends cc.Component {
         let ageItemData = ConfigMgr.ageArray[UserInfo.age];
         let evenIDsStr = ageItemData.eventid + "";//转成字符串
         let eventIdsArray = evenIDsStr.split(',');
-        let isLoop = true;
-        let docItemData = null;
-         //先判断是否跟天赋里面的互斥
-        while(isLoop)//随机对应的事件
-        {   
-            let rand = ConfigMgr.getRandomNum(0,eventIdsArray.length-1);
-            let docItem =  ConfigMgr.docMap.get(eventIdsArray[rand]);
-            cc.log(rand,docItem);
-            let fag0 =  Tools.getIsHaveDoc(docItem);
-            let fag1 =  Tools.getRandDocIsInSelectTalentMutexMap(docItem);//是否在我选择的天赋池里面有互斥事件
-            if(fag1 == false&&fag0 == false)
-            {
-                //let xiuwei = UserInfo.getXiuWei();//获取我的修为
-                let fag2 = Tools.getRandDocIsXwEventProbability(docItem);
-                if(fag2 == true)//可用用
-                {
-                    isLoop = false;
-                    docItemData = docItem;
-                    break;
+     
 
-                }
-                
-            }
-             
+        let fitAllDocArrary = [];
+        for (let index = 0; index < eventIdsArray.length; index++) {
+            const docId = eventIdsArray[index];
+           let docItem =  ConfigMgr.docMap.get(docId);
+            cc.log("-----------------------------------开始--------------------------------------------------");
+           let fag0 =  Tools.getIsHaveDoc(docItem);
+           let fag1 =  Tools.getRandDocIsInSelectExistNoHappen(docItem);//是否在我选择的天赋池里面有互斥事件
+           let fag2 = false;
+           cc.log("=====fag0,fag1 = ",docId,fag0,fag1)
+           if(fag1 == false&&fag0 == false)
+           {
+               //let xiuwei = UserInfo.getXiuWei();//获取我的修为
+               fag2= Tools.getRandDocIsXwEventProbability(docItem);
+               cc.log("fag2=",fag2);
+               if(fag2 == true)//可用用
+               {
+
+                    fitAllDocArrary.push(docItem);
+               }
+               
+           }
+        
         }
+        cc.log("---------------------------------------结束----------------------------------------------");
+        cc.log(fitAllDocArrary);
+        let rand = ConfigMgr.getRandomNum(0,fitAllDocArrary.length-1);
+        let docItemData = fitAllDocArrary[rand];
+        
+        //  //先判断是否跟天赋里面的互斥
+        // while(isLoop)//随机对应的事件
+        // {   
+        //     let rand = ConfigMgr.getRandomNum(0,eventIdsArray.length-1);
+        //     let docItem =  ConfigMgr.docMap.get(eventIdsArray[rand]);
+       
+        //     let fag0 =  Tools.getIsHaveDoc(docItem);
+        //     let fag1 =  Tools.getRandDocIsInSelectTalentMutexMap(docItem);//是否在我选择的天赋池里面有互斥事件
+        //     cc.log("------>>>",fag0,fag1,docItem);
+        //     if(fag1 == false&&fag0 == false)
+        //     {
+        //         //let xiuwei = UserInfo.getXiuWei();//获取我的修为
+        //         let fag2 = Tools.getRandDocIsXwEventProbability(docItem);
+        //         if(fag2 == true)//可用用
+        //         {
+        //             isLoop = false;
+        //             docItemData = docItem;
+        //             break;
+
+        //         }
+                
+        //     }
+             
+        // }
 
         //测试显示
         //docItemData = ConfigMgr.docMap.get("10094");
+        cc.log(UserInfo.selectDocMap);
         cc.log("--->测试显示>>>>>>> age= ",UserInfo.age,docItemData)
         if(parseInt(docItemData.type) == 1)
         {
@@ -673,7 +704,7 @@ export default class mylifeLayout extends cc.Component {
 
             }
         }
-      
+        cc.log("resItemArray1  =",resItemArray1)
         //存在某个事件一定不发生
         let resItemArray2 = [];
         for (let index = 0; index < resItemArray1.length; index++) {

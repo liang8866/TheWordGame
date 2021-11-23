@@ -214,13 +214,13 @@ let Tools = new class {
         for(let i=0;i<UserInfo.selectTalentArray.length;i++)
         {
             let talentArrItem = UserInfo.selectTalentArray[i];
-            UserInfo.attrNumList[UserInfo.wuxing] = this.getStrToNum(talentArrItem.wuxing);
-            UserInfo.attrNumList[UserInfo.tipo] = this.getStrToNum(talentArrItem.tipo);
-            UserInfo.attrNumList[UserInfo.zhenyuan] = this.getStrToNum(talentArrItem.zhenyuan);
-            UserInfo.attrNumList[UserInfo.lingli] = this.getStrToNum(talentArrItem.lingli);
-            UserInfo.attrNumList[UserInfo.xianli] = this.getStrToNum(talentArrItem.xianli);
-            UserInfo.attrNumList[UserInfo.yaoli] = this.getStrToNum(talentArrItem.yaoli);
-            UserInfo.attrNumList[UserInfo.moli] = this.getStrToNum(talentArrItem.moli);
+            UserInfo.attrNumList[UserInfo.wuxing] += this.getStrToNum(talentArrItem.wuxing);
+            UserInfo.attrNumList[UserInfo.tipo] += this.getStrToNum(talentArrItem.tipo);
+            UserInfo.attrNumList[UserInfo.zhenyuan] += this.getStrToNum(talentArrItem.zhenyuan);
+            UserInfo.attrNumList[UserInfo.lingli] += this.getStrToNum(talentArrItem.lingli);
+            UserInfo.attrNumList[UserInfo.xianli] += this.getStrToNum(talentArrItem.xianli);
+            UserInfo.attrNumList[UserInfo.yaoli] += this.getStrToNum(talentArrItem.yaoli);
+            UserInfo.attrNumList[UserInfo.moli] += this.getStrToNum(talentArrItem.moli);
 
         }
     }
@@ -264,15 +264,18 @@ let Tools = new class {
         }
         return tmpMap;
     }
-    getRandDocIsInSelectTalentMutexMap(docItem)//我随机到的文案在我的选择的天赋池里面是否有互斥
+    getRandDocIsInSelectExistNoHappen(docItem)//我随机到的文案在我的选择的天赋池里面是否有互斥
     {
         let fag = false;//不存在，可用
         let docExistNoHappenStr = docItem.existNoHappen+"";//转成字符串，
         let tmpArr = docExistNoHappenStr.split(',');//分割
-      
+        if(docExistNoHappenStr.length<1)
+        {
+            return false;
+        }
         for (let index = 0; index < tmpArr.length; index++) {
             const element = tmpArr[index];
-            if(UserInfo.selectTalentMutexMap.get(element) != null)
+            if(UserInfo.selectDocMap.get(element) != null)
             {
                 
                 fag = true;//存在，不可用
@@ -436,7 +439,7 @@ let Tools = new class {
     getTheContion2(constr,selectMap)
     {
         let  orgStr = constr + "";
-        cc.log("orgStr  ",orgStr)
+
         if(orgStr.length<=0)
         {
             return true;
@@ -474,7 +477,7 @@ let Tools = new class {
                 fag1 = true;
             }
         }
-        cc.log(idStr,xwStr,fag1);
+   
 
         let fag2 = false;
         if(xwStr.length<1 ||xwStr == "")
@@ -546,7 +549,7 @@ let Tools = new class {
         {
             fag2 = keyNum>num1 ?true:false;
         }
-
+        cc.log("------>>>>>>  orgStr =",orgStr,"fag1&&fag2 == ",fag1,fag2, fag1&&fag2)
         return fag1&&fag2;
     }
 

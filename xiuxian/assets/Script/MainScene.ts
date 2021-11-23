@@ -41,6 +41,7 @@ export default class NewClass extends cc.Component {
         this.myliefLayoutNode.active = false;
 
         cc.game.setFrameRate(60);
+        cc.debug.setDisplayStats(false);
     }
 
     start () {

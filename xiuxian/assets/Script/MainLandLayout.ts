@@ -126,6 +126,7 @@ export default class MainLandLayout extends cc.Component {
             cc.log("进入下一页面");
             this.node.active = false;
             UserInfo.mylifeLayoutNode.active = true;
+            this.node.active = false;
             let attrScript =   UserInfo.mylifeLayoutNode.getComponent("mylifeLayout");
             attrScript.onBeginShow();
         }
