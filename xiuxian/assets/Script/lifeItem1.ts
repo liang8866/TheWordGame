@@ -26,7 +26,7 @@ export default class NewClass extends cc.Component {
     }
     onSetCellData(cellData:CellData)
     {
-        cc.log("=========>>>>>>>>>>>>>>>>>")
+        // cc.log("=========>>>>>>>>>>>>>>>>>")
        
         this.ageLabel.string = cellData.age +"岁";
         this.mLabel.string = cellData.content;

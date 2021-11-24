@@ -80,7 +80,7 @@ export default class TalentItemLayout extends cc.Component {
         this.m_isSelect = !this.m_isSelect;
         this.itemSelectNode.active = this.m_isSelect;
     
-        //cc.log(UserInfo.selectTalentArray);
+        // cc.log(UserInfo.selectTalentArray);
         if(this.m_isSelect)//如果是选择了，就添加到数组中
         {
             UserInfo.selectTalentArray.push(this.itemData);
@@ -94,7 +94,7 @@ export default class TalentItemLayout extends cc.Component {
                 }
             }
         }
-        //cc.log(UserInfo.selectTalentArray);
+        // cc.log(UserInfo.selectTalentArray);
 
     }
     // update (dt) {}

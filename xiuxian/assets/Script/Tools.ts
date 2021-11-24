@@ -200,30 +200,132 @@ let Tools = new class {
         let val = parseInt(str);
         return val;
     };
-    setTalentArrToMyAttr()//累计选择的天赋属性到用户身上
+
+    addTalentArrToMyAttr()
     {
-         //     wuxing:number = 0;//悟性
-    // tipo:number = 1;//体魄
-    // zhenyuan:number = 2;//真元
-    // lingli:number = 3;//灵力
-    // xianli:number = 4;//仙力
-    // yaoli:number = 5;//妖力
-    // moli:number = 6;//魔力
-    // nianling:number = 7;//年龄
-    // xiuwei:number = 8;//修为 = 体魄+真元+悟性+ 灵力+ 仙力 +妖力+ 魔力
         for(let i=0;i<UserInfo.selectTalentArray.length;i++)
         {
             let talentArrItem = UserInfo.selectTalentArray[i];
-            UserInfo.attrNumList[UserInfo.wuxing] += this.getStrToNum(talentArrItem.wuxing);
-            UserInfo.attrNumList[UserInfo.tipo] += this.getStrToNum(talentArrItem.tipo);
-            UserInfo.attrNumList[UserInfo.zhenyuan] += this.getStrToNum(talentArrItem.zhenyuan);
-            UserInfo.attrNumList[UserInfo.lingli] += this.getStrToNum(talentArrItem.lingli);
-            UserInfo.attrNumList[UserInfo.xianli] += this.getStrToNum(talentArrItem.xianli);
-            UserInfo.attrNumList[UserInfo.yaoli] += this.getStrToNum(talentArrItem.yaoli);
-            UserInfo.attrNumList[UserInfo.moli] += this.getStrToNum(talentArrItem.moli);
+            if(talentArrItem.happenCondition == "")
+            {  
+                UserInfo.attrNumList[UserInfo.wuxing] += this.getStrToNum(talentArrItem.wuxing);
+                UserInfo.attrNumList[UserInfo.tipo] += this.getStrToNum(talentArrItem.tipo);
+                UserInfo.attrNumList[UserInfo.zhenyuan] += this.getStrToNum(talentArrItem.zhenyuan);
+                UserInfo.attrNumList[UserInfo.lingli] += this.getStrToNum(talentArrItem.lingli);
+                UserInfo.attrNumList[UserInfo.xianli] += this.getStrToNum(talentArrItem.xianli);
+                UserInfo.attrNumList[UserInfo.yaoli] += this.getStrToNum(talentArrItem.yaoli);
+                UserInfo.attrNumList[UserInfo.moli] += this.getStrToNum(talentArrItem.moli);
+            }
+        }
+    }
+
+    setTalentArrToMyAttr()//根据符合条件的累计选择的天赋属性到用户身上
+    {
+      
+        for(let i=0;i<UserInfo.selectTalentArray.length;i++)
+        {
+            let talentArrItem = UserInfo.selectTalentArray[i];
+    
+            if(talentArrItem.happenCondition != "" && this.getTalentContionIsOk(talentArrItem.happenCondition) == true )
+            {
+                // cc.log("wuxing=", this.getStrToNum(talentArrItem.wuxing));
+                // cc.log("tipo=", this.getStrToNum(talentArrItem.tipo));
+                // cc.log( "zhenyuan=",this.getStrToNum(talentArrItem.zhenyuan));
+                // cc.log("lingli=", this.getStrToNum(talentArrItem.lingli));
+                // cc.log("xianli=", this.getStrToNum(talentArrItem.xianli));
+                // cc.log("yaoli=", this.getStrToNum(talentArrItem.yaoli));
+                // cc.log("moli=", this.getStrToNum(talentArrItem.moli));
+                UserInfo.attrNumList[UserInfo.wuxing] += this.getStrToNum(talentArrItem.wuxing);
+                UserInfo.attrNumList[UserInfo.tipo] += this.getStrToNum(talentArrItem.tipo);
+                UserInfo.attrNumList[UserInfo.zhenyuan] += this.getStrToNum(talentArrItem.zhenyuan);
+                UserInfo.attrNumList[UserInfo.lingli] += this.getStrToNum(talentArrItem.lingli);
+                UserInfo.attrNumList[UserInfo.xianli] += this.getStrToNum(talentArrItem.xianli);
+                UserInfo.attrNumList[UserInfo.yaoli] += this.getStrToNum(talentArrItem.yaoli);
+                UserInfo.attrNumList[UserInfo.moli] += this.getStrToNum(talentArrItem.moli);
+            }
+            
 
         }
     }
+
+    getTalentContionIsOk(happenCondition)
+    {
+        let xwStr = happenCondition;
+      
+        if(xwStr == "")
+        {
+            return false;//因为之前预计累加过了，无需再加
+        }
+        let tmpArr = xwStr.split(':');//分割
+   
+        let arr = [];//tmpArr[1].split(",");
+        if(tmpArr.length>1)
+        {
+            arr = tmpArr[1].split(",");
+        }else{
+            return false;
+        }
+        // cc.log("------getTalentContionIsOk ->>> arr =",arr)
+        let num1:number = null;
+        let num2:number = null;
+        if(arr.length>0)
+        {
+            num1 = parseInt(arr[0]);
+        }
+        if(arr.length>1)
+        {
+            num2 = parseInt(arr[1]);
+        }
+        let keyNum = 0;
+        if(xwStr.indexOf("wuxing") != -1)
+        {
+            keyNum = UserInfo.attrNumList[0];
+        }
+        else if(xwStr.indexOf("tipo") != -1 )
+        {
+            keyNum = UserInfo.attrNumList[1];
+        }
+        else if(xwStr.indexOf("zhenyuan") != -1 )
+        {
+            keyNum = UserInfo.attrNumList[2];
+        }
+        else if(xwStr.indexOf("lingli") != -1 )
+        {
+            keyNum = UserInfo.attrNumList[3];
+        }
+        else if(xwStr.indexOf("xianli") != -1 )
+        {
+            keyNum = UserInfo.attrNumList[4];
+        }
+        else if(xwStr.indexOf("yaoli") != -1 )
+        {
+            keyNum = UserInfo.attrNumList[5];
+        }
+        else if(xwStr.indexOf("moli") != -1 )
+        {
+            keyNum = UserInfo.attrNumList[6];
+        }
+        else if(xwStr.indexOf("nianling") != -1 )
+        {
+            keyNum = UserInfo.age;
+        }
+        else if(xwStr.indexOf("xiuwei") != -1 )
+        {
+            keyNum = UserInfo.getXiuWei();
+        }
+        // cc.log("-----xwStr.indexOf nianling",xwStr.indexOf("nianling"),keyNum,num1,num2);
+        if(num1 != null && num2 != null)
+        {
+            return keyNum>num1&&keyNum<num2 ?true:false;
+        } 
+        else if(num1 != null && num2 == null)
+        {
+            return keyNum> num1 ?true:false;
+        }
+        return true;
+    }
+
+
   
     getSelectTalentMutexToMap()//获取选择的天赋里面的互斥事件
     {
@@ -292,20 +394,7 @@ let Tools = new class {
         
          let XwEventProbabilityStr = docItem.xwEventProbability+"";//转成字符串，
         let fag =  this.getTheContion2(XwEventProbabilityStr,UserInfo.selectDocMap);
-        // if(XwEventProbabilityStr == "")
-        // {
-        //     return true;//表示没限制，可以用
-        // }
-        // let tmpArr = XwEventProbabilityStr.split(',');//分割
-        // for (let index = 0; index < tmpArr.length; index++) {
-        //     const element = tmpArr[index];
-        //     if(UserInfo.selectDocMap.get(element) != null)
-        //     {
-                
-        //         fag = true;//存在，可用
-        //         break;
-        //     }
-        // }
+       
         return fag;
     }
 
@@ -316,7 +405,7 @@ let Tools = new class {
         {
             let ratioNum = parseInt(docItem.die);//
             let rand = ConfigMgr.getRandomNum(0,100);
-            cc.log("------>>> die rand=",rand,"ratioNum=",ratioNum);
+           // cc.log("------>>> die rand=",rand,"ratioNum=",ratioNum);
             if(rand <=ratioNum)//随机到了
             {   
                 isDie =true;
@@ -439,7 +528,7 @@ let Tools = new class {
     getTheContion2(constr,selectMap)
     {
         let  orgStr = constr + "";
-
+        //cc.log("------getTheContion2--------========",orgStr)
         if(orgStr.length<=0)
         {
             return true;
@@ -465,22 +554,24 @@ let Tools = new class {
         }
         let idArray  = idStr.split(",");
         let fag1 = true;
-        if (idArray.length<= 0) {
+       ;
+        if (idStr == "") {
             fag1 = true;
         }else{
             fag1 = false;
         }
-      
+       // cc.log("idStr =",idStr,"   idArray=  ",idArray,"   idArray.length<= 0 :",idArray.length,idArray.length<= 0)
+
         for (let index = 0; index < idArray.length; index++) {
             const element = idArray[index];
             if (selectMap.get(element) != null) {
                 fag1 = true;
             }
         }
-   
+
 
         let fag2 = false;
-        if(xwStr.length<1 ||xwStr == "")
+        if(xwStr == "")
         {
             fag2 = true;
         }
@@ -493,6 +584,8 @@ let Tools = new class {
         }else{
             fag2 = true;
         }
+        // cc.log("tmpArr = ",tmpArr);
+        // cc.log("arr = ",arr);
         let num1:number = null;
         let num2:number = null;
         if(arr.length>0)
@@ -540,7 +633,7 @@ let Tools = new class {
         {
             keyNum = UserInfo.getXiuWei();
         }
-        
+       // cc.log("keyNum=",keyNum,"------->>>  num1=",num1,"        num2=",num2);
         if(num1 != null && num2 != null)
         {
             fag2 =  keyNum>num1&&keyNum<=num2 ?true:false;
@@ -549,7 +642,7 @@ let Tools = new class {
         {
             fag2 = keyNum>num1 ?true:false;
         }
-        cc.log("------>>>>>>  orgStr =",orgStr,"fag1&&fag2 == ",fag1,fag2, fag1&&fag2)
+        //cc.log("------>>>>>>  orgStr =",orgStr,"fag1&&fag2 == ",fag1,fag2, fag1&&fag2)
         return fag1&&fag2;
     }
 

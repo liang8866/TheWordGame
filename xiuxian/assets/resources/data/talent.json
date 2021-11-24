@@ -7,11 +7,11 @@
 {"id":1006,"talentName":"鸿蒙圣位","telentDesc":"达到仙帝时，可感悟成圣","quality":5,"happenCondition":"","tipo":"","zhenyuan":"","wuxing":"","lingli":"","xianli":"","yaoli":"","moli":"","mutex":"","mutex1":""},
 {"id":1007,"talentName":"神秘的羊","telentDesc":"有概率遇到李九夜奇遇事件","quality":3,"happenCondition":"","tipo":"","zhenyuan":"","wuxing":"","lingli":"","xianli":"","yaoli":"","moli":"","mutex":"","mutex1":""},
 {"id":1008,"talentName":"天道紫气","telentDesc":"所有属性+30（悟性除外）","quality":4,"happenCondition":"","tipo":30,"zhenyuan":30,"wuxing":"","lingli":30,"xianli":30,"yaoli":30,"moli":30,"mutex":"","mutex1":""},
-{"id":1009,"talentName":"学前启蒙","telentDesc":"5岁时悟性+1","quality":1,"happenCondition":"nialing:4,6","tipo":"","zhenyuan":"","wuxing":1,"lingli":"","xianli":"","yaoli":"","moli":"","mutex":"","mutex1":""},
+{"id":1009,"talentName":"学前启蒙","telentDesc":"5岁时悟性+1","quality":1,"happenCondition":"nianling:4,6","tipo":"","zhenyuan":"","wuxing":1,"lingli":"","xianli":"","yaoli":"","moli":"","mutex":"","mutex1":""},
 {"id":1010,"talentName":"蛮力","telentDesc":"体魄+5","quality":1,"happenCondition":"","tipo":5,"zhenyuan":"","wuxing":"","lingli":"","xianli":"","yaoli":"","moli":"","mutex":"","mutex1":""},
 {"id":1011,"talentName":"化劲","telentDesc":"真元+5","quality":1,"happenCondition":"","tipo":"","zhenyuan":5,"wuxing":"","lingli":"","xianli":"","yaoli":"","moli":"","mutex":"","mutex1":""},
-{"id":1012,"talentName":"聪慧","telentDesc":"悟性+2","quality":2,"happenCondition":"","tipo":"","zhenyuan":"","wuxing":1,"lingli":"","xianli":"","yaoli":"","moli":"","mutex":"","mutex1":""},
+{"id":1012,"talentName":"聪慧","telentDesc":"悟性+2","quality":2,"happenCondition":"","tipo":"","zhenyuan":"","wuxing":2,"lingli":"","xianli":"","yaoli":"","moli":"","mutex":"","mutex1":""},
 {"id":1013,"talentName":"紫火花","telentDesc":"灵力+50","quality":3,"happenCondition":"","tipo":"","zhenyuan":"","wuxing":"","lingli":50,"xianli":"","yaoli":"","moli":"","mutex":"","mutex1":""},
 {"id":1014,"talentName":"混元青莲","telentDesc":"仙力+100","quality":4,"happenCondition":"","tipo":"","zhenyuan":"","wuxing":"","lingli":"","xianli":100,"yaoli":"","moli":"","mutex":"","mutex1":""},
-{"id":1015,"talentName":"前世赎罪","telentDesc":"18岁时体魄-10","quality":1,"happenCondition":"nialing:17,19","tipo":"-10","zhenyuan":"","wuxing":"","lingli":"","xianli":"","yaoli":"","moli":"","mutex":"","mutex1":""}
+{"id":1015,"talentName":"前世赎罪","telentDesc":"18岁时体魄-10","quality":1,"happenCondition":"nianling:17,19","tipo":"-10","zhenyuan":"","wuxing":"","lingli":"","xianli":"","yaoli":"","moli":"","mutex":"","mutex1":""}
 ]

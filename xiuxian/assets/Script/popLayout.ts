@@ -48,7 +48,7 @@ export default class popLayout extends cc.Component {
 
     onSetActionData(actData,pself)
     {
-        cc.log("------>>>>>.....",actData);
+        // cc.log("------>>>>>.....",actData);
         this.mDocItemData = actData;
         this.mCallAction = pself;
         this.mlabel.string = actData.actionEventDesc;
@@ -57,7 +57,7 @@ export default class popLayout extends cc.Component {
     }
     onClickBtn1()
     {
-        cc.log("----anniu1---")
+        // cc.log("----anniu1---")
         if(  this.mSelf)
         {
             this.mSelf.onClickPopLayout( this.mRandEventData.id+"&anniu1",this.mDocItemData);
@@ -73,7 +73,7 @@ export default class popLayout extends cc.Component {
     };
     onClickBtn2()
     {
-        cc.log("----anniu2---")
+        // cc.log("----anniu2---")
         if(  this.mSelf)
         {
             this.mSelf.onClickPopLayout(this.mRandEventData.id+"&anniu2",this.mDocItemData);

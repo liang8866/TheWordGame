@@ -65,7 +65,7 @@ export default class mylifeLayout extends cc.Component {
        
         this.mTableView.registerHandler(this._tableCellAtIndex.bind(this), TableViewHandler.kTableCellAtIndex);
         this.mTableView.registerHandler(this._tableCellSizeForIndex.bind(this), TableViewHandler.kTableCellSizeForIndex);
-        this.onBeginShow()//进入的时候显示数据
+        // this.onBeginShow()//进入的时候显示数据
     }
     getAttrLabelObj()
     {
@@ -82,7 +82,7 @@ export default class mylifeLayout extends cc.Component {
 
     onBeginShow()//进入的时候显示数据
     {
-        Tools.setTalentArrToMyAttr();//吧 选择的天赋里面的属性添加到我的身上
+        Tools.addTalentArrToMyAttr();//吧 选择的天赋里面的属性添加到我的身上
         UserInfo.selectTalentMutexMap = Tools.getSelectTalentMutexToMap();//选择的天赋里面的互斥事件
         this.getAttrLabelObj();//
        this.showAllAttrNum();;//显示属性
@@ -149,9 +149,11 @@ export default class mylifeLayout extends cc.Component {
     {
          let fateEventItem = ConfigMgr.getFateEvent();//查找所有符合当前复活的逆天改命事件
          UserInfo.selectFateMap.set(fateEventItem.id,fateEventItem);
-         this.setShowItem3(fateEventItem)//你复活了
+         this.setShowItem3(fateEventItem);//你复活了
         this.changeLifeNode.active = false;
         this.growupLifeNode.active = true;
+        this.sumLifeNode.active = false;
+   
     }
     /** 当前索引列表项 */
     private _tableCellAtIndex(tableview: TableView, index: number): TableViewCell {
@@ -187,7 +189,6 @@ export default class mylifeLayout extends cc.Component {
       
         let data:CellData = this.tableDataArray[index];
         tagSize = cc.size(579, data.height+10);//data.itemNode.getContentSize();
-       //  cc.log(data.itemNode.getContentSize(),tagSize)
         return tagSize;
  
     }
@@ -199,22 +200,23 @@ export default class mylifeLayout extends cc.Component {
         let ageItemData = ConfigMgr.ageArray[UserInfo.age];
         let evenIDsStr = ageItemData.eventid + "";//转成字符串
         let eventIdsArray = evenIDsStr.split(',');
-     
+
+        Tools.setTalentArrToMyAttr();//把符合条件的添加
+        this.showAllAttrNum();//更新显示
 
         let fitAllDocArrary = [];
         for (let index = 0; index < eventIdsArray.length; index++) {
             const docId = eventIdsArray[index];
            let docItem =  ConfigMgr.docMap.get(docId);
-            cc.log("-----------------------------------开始--------------------------------------------------");
+            //cc.log("-----------------------------------开始--------------------------------------------------");
            let fag0 =  Tools.getIsHaveDoc(docItem);
            let fag1 =  Tools.getRandDocIsInSelectExistNoHappen(docItem);//是否在我选择的天赋池里面有互斥事件
            let fag2 = false;
-           cc.log("=====fag0,fag1 = ",docId,fag0,fag1)
            if(fag1 == false&&fag0 == false)
            {
                //let xiuwei = UserInfo.getXiuWei();//获取我的修为
                fag2= Tools.getRandDocIsXwEventProbability(docItem);
-               cc.log("fag2=",fag2);
+               //cc.log("fag2=",fag2);
                if(fag2 == true)//可用用
                {
 
@@ -224,40 +226,12 @@ export default class mylifeLayout extends cc.Component {
            }
         
         }
-        cc.log("---------------------------------------结束----------------------------------------------");
-        cc.log(fitAllDocArrary);
+       // cc.log("---------------------------------------结束----------------------------------------------");
+       // cc.log(fitAllDocArrary);
         let rand = ConfigMgr.getRandomNum(0,fitAllDocArrary.length-1);
         let docItemData = fitAllDocArrary[rand];
         
-        //  //先判断是否跟天赋里面的互斥
-        // while(isLoop)//随机对应的事件
-        // {   
-        //     let rand = ConfigMgr.getRandomNum(0,eventIdsArray.length-1);
-        //     let docItem =  ConfigMgr.docMap.get(eventIdsArray[rand]);
-       
-        //     let fag0 =  Tools.getIsHaveDoc(docItem);
-        //     let fag1 =  Tools.getRandDocIsInSelectTalentMutexMap(docItem);//是否在我选择的天赋池里面有互斥事件
-        //     cc.log("------>>>",fag0,fag1,docItem);
-        //     if(fag1 == false&&fag0 == false)
-        //     {
-        //         //let xiuwei = UserInfo.getXiuWei();//获取我的修为
-        //         let fag2 = Tools.getRandDocIsXwEventProbability(docItem);
-        //         if(fag2 == true)//可用用
-        //         {
-        //             isLoop = false;
-        //             docItemData = docItem;
-        //             break;
 
-        //         }
-                
-        //     }
-             
-        // }
-
-        //测试显示
-        //docItemData = ConfigMgr.docMap.get("10094");
-        cc.log(UserInfo.selectDocMap);
-        cc.log("--->测试显示>>>>>>> age= ",UserInfo.age,docItemData)
         if(parseInt(docItemData.type) == 1)
         {
             this.setTypeShow1(docItemData);//type=1进行的逻辑
@@ -300,7 +274,7 @@ export default class mylifeLayout extends cc.Component {
     setTypeShow1(docItemData)//type=1进行的逻辑
     {
         let isDie =  Tools.getIsDieForDocItem(docItemData);//根据ITEM判断是否会死亡
-        cc.log("-------->>>> isDie=",isDie)
+       // cc.log("-------->>>> isDie=",isDie)
         if(isDie == false)
         {
             
@@ -692,19 +666,18 @@ export default class mylifeLayout extends cc.Component {
     {
 
         let docBtnEventArray = ConfigMgr.getButtonEventWithDocItem(buttonEventKey);
-       cc.log(docBtnEventArray);
+  
         //查找到符合的item
         let resItemArray1 = [];
         for (let index = 0; index < docBtnEventArray.length; index++) {
             const eleItem = docBtnEventArray[index];
-            // cc.log(Tools.getTheDocItemForXwHappen(eleItem),UserInfo.selectDocMap.get(eleItem.id))
             if(Tools.getTheDocItemForXwHappen(eleItem) == true && UserInfo.selectDocMap.get(eleItem.id) == null)
             {
                 resItemArray1.push(eleItem);
 
             }
         }
-        cc.log("resItemArray1  =",resItemArray1)
+       
         //存在某个事件一定不发生
         let resItemArray2 = [];
         for (let index = 0; index < resItemArray1.length; index++) {
@@ -728,7 +701,7 @@ export default class mylifeLayout extends cc.Component {
                 resItemArray2.push(eleItem)
             }
         }
-       cc.log(0,resItemArray2.length-1,0,resItemArray2)
+
         let rand = ConfigMgr.getRandomNum(0,resItemArray2.length-1);
         let popChoseDocItemData = resItemArray2[rand];
 
@@ -754,7 +727,7 @@ export default class mylifeLayout extends cc.Component {
 
     onShowActionItem(popChoseDocItemData)
     {
-       cc.log(popChoseDocItemData);
+      
         UserInfo.selectDocMap.set(popChoseDocItemData.id,popChoseDocItemData);
        
         let mcellData:CellData = {
@@ -781,10 +754,10 @@ export default class mylifeLayout extends cc.Component {
         if (popChoseDocItemData == null) {
             return;
         }
-        cc.log("popChoseDocItemData    :",popChoseDocItemData)
+        
         if(buttonEventKey.indexOf("anniu1") != -1 )///拒绝了，用3的
         {   
-            cc.log("==== buttonEventKey ",buttonEventKey)
+            
             let popChoseDocItemData = this.getButtonKeyEventByDoc(buttonEventKey);
             this.onShowActionItem(popChoseDocItemData)
          
@@ -809,14 +782,14 @@ export default class mylifeLayout extends cc.Component {
 
         let docItemData =  dcdata;
         let isDie =  Tools.getIsDieForDocItem(docItemData);//根据ITEM判断是否会死亡
-        cc.log("-------->>>> isDie=",isDie)
+
         if(isDie == true)
         {
             this.setShowItem2(docItemData)//显示死亡
             this.onForDieShowBtn()//死了后的按钮表现
         }
 
-        cc.log("actData.contact = ",actData.contact);
+     
         if(parseInt(actData.contact) ==  parseInt(docItemData.id))//存在某个事件必触发奖励
         {
             
