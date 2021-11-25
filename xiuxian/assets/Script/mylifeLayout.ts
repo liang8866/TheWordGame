@@ -142,7 +142,13 @@ export default class mylifeLayout extends cc.Component {
     onClicklifeSum()
     {
         this.node.active = false;
+        
         UserInfo.startLayoutNode.active = true;
+        UserInfo.TalentLayoutNode.active = false;
+        UserInfo.createAttrLayoutNode.active = false;
+        UserInfo.mainLandLayoutNode.active = false;
+        UserInfo.mylifeLayoutNode.active = false;
+
     }
 
     onClickChangeLife()//逆天改命
@@ -316,7 +322,7 @@ export default class mylifeLayout extends cc.Component {
     onForDieShowBtn()//死了后的按钮表现
     {
         UserInfo.dieNum++
-        if (UserInfo.dieNum < UserInfo.dieTotalNum) {
+        if (UserInfo.dieNum <= UserInfo.dieTotalNum) {
             this.growupLifeNode.active = false;//按钮关闭
             this.sumLifeNode.active = true;
             this.changeLifeNode.active = true;//逆天改命按钮
